@@ -26,7 +26,7 @@ app.command("/lackbot-ping", async({command,ack,respond}) => {
   const start = Date.now();
   await ack();                    // did not knew that you can pass something in the ack() block;
   await respond ({                 // update: It only changes text of another respond block 🥀
-    text: `Initializing Ping. :pls-just-work:`
+    text: `Initializing Ping. :pls-just-work:`    // update: IT DOESNT WORK AT ALL
   });  
   const end = Date.now();        
   let reply_for_ping;
@@ -34,12 +34,15 @@ app.command("/lackbot-ping", async({command,ack,respond}) => {
   if (ping <= 250) {
     reply_for_ping = `_Dam is *bro sitting* ON the server? Pretty fast :shrug3d:_`
   }
-  elif (ping >= 1000) {
+  else if (ping >= 1000) {
     reply_for_ping = `_OH GOD, is this guy in *Antartica* or smth :sob-pray:_`
-  } 
+  }
+  else {
+    reply_for_ping = `_Maybe try getting out of your room cause I heard wifi is faster there but idk :3c:_`
+  };
   await respond ({
-    text: `*lackbot is up!* :black-hole:\nRecorded Latency : ${ping}ms`, // Added mx since the unit is not attached in .date
-    replace_original: true        // replaces the original message GONNA USE IT ON EVEYRTHING NOW FR
+    text: `*lackbot is up!* :black-hole:\nRecorded Latency : ${ping}ms\n\n${reply_for_ping}`, // Added mx since the unit is not attached in .date
+    replace_original: true        // replaces the original message GONNA USE IT ON EVEYRTHING NOW FR( DOESNT WORK FOR SUM REASON )
   })
 });
 
