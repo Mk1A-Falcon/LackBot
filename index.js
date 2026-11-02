@@ -68,6 +68,44 @@ app.command("/lackbot-roll", async({command,ack,respond}) => {
   })
 });
 
+
+app.command("/lackbot-joke",async({command,ack,respond}) => {
+  await ack("_they see me rolling, they hating :sparkles:_"); // read the documentation here http://www.official-joke-api.appspot.com/random_joke (main website is unsafe igb)
+  try {                                                       // in case the api is down or something
+    const response = await axios.get("http://www.official-joke-api.appspot.com/random_joke");
+    await respond ({
+      text: `_${response.data.setup}_\n\n${response.data.punchline}`,
+      response_type: "in_channel",
+    })
+  }                 // response type here is used to send it to the channel and not just "oNLY Visible by you"
+  catch(err) {
+    console.log(err);
+    await respond({           // look at albert over here ig
+      text: `_Looks like the Joke API had to make a joke... :think:_\n\n*But it was on you instead* :cat_laugh: :3d-sad-emoji:\n(Caught error => "${err}")`
+    })   
+  }
+});
+
+app.command("/lackbot-quote", async(command,ack,respond) => {
+  await ack(`_Monday left me broken_\nBy <@U0AE3R4FR3R> (Loading Quote)`)
+  try{
+    const response = await axios.get("https://zenquotes.io/api/random");
+    const quote = response[0].q;   // It gives a list which has a dict. inside it
+    const author = response[0].a;
+    await respond({
+      text: `*_${quote}_*\n\n _by_ ${author}`,
+      response_type : "in_channel"
+    });
+  }
+  catch (err) {
+    console.log(err);
+    await respond ({
+      text: `_Monday apparently left you broken too_ :3d-sad-emoji:\nError : ${err}`
+    });
+  };
+});
+
+
 (async () => {  // copied directly from the stardance guide
   await app.start();
   console.log("Bot is running!");
