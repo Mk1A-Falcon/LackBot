@@ -10,31 +10,44 @@ const app = new App({
 });
 
 app.command("/lackbot-help",async({command,ack,respond}) => {
-  await ack();
+  await ack();      // I made the zen-quotes emoji just for this lol :)
   await respond({
-    text: `Lackbot is a slackbot developed by <@U0AE3R4FR3R> which lacks a lot of important features :fah:
+    text: `Lackbot is a *slackbot* developed by <@U0AE3R4FR3R> which lacks a lot of *important features* :fah:
     Available Commands-
-    1. /lackbot-help > Lists all commands available by the Lackbot slackbot.
-    2. /lackbot-roll > Constantly rolls a number between 1 to 6.
-    3. /lackbot-ping > Checks the latency of the Lackbot.
-    4. /lackbot-joke > Fetches a random Joke from the official Jokes API.
-    5. /lackbot-quote > Fetches a random quote from ZEN api.`
+    1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
+    2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
+    3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
+    4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
+    5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:`
   })
 });
 
 app.command("/lackbot-ping", async({command,ack,respond}) => {
   const start = Date.now();
-  await ack("Ping Initiated.");   // did not knew that you can pass something in the ack() block;
-  const end = Date.now();
+  await ack();                    // did not knew that you can pass something in the ack() block;
+  await respond ({                 // update: It only changes text of another respond block 🥀
+    text: `Initializing Ping. :pls-just-work:`
+  });  
+  const end = Date.now();        
+  let reply_for_ping;
   const ping = end - start;
+  if (ping <= 250) {
+    reply_for_ping = `_Dam is *bro sitting* ON the server? Pretty fast :shrug3d:_`
+  }
+  elif (ping >= 1000) {
+    reply_for_ping = `_OH GOD, is this guy in *Antartica* or smth :sob-pray:_`
+  } 
   await respond ({
-    text: `lackbot is up! :black-hole:\nRecorded Latency:${ping}`,
+    text: `*lackbot is up!* :black-hole:\nRecorded Latency : ${ping}ms`, // Added mx since the unit is not attached in .date
     replace_original: true        // replaces the original message GONNA USE IT ON EVEYRTHING NOW FR
   })
 });
 
 app.command("/lackbot-roll", async({command,ack,respond}) => {
-  await ack("Rolling... :pls-just-work:");
+  await ack();
+  await respond ({
+    text: `Rolling... :pls-just-work:`
+  });
   const aguments = command.text.split(' ');   // for some reason, it is .split(" ") in js whereas it's just .split() in py (defaults to space as cutting point)
   const first= parseInt(aguments[0]) || 1;  // Bruh parseInt is like the int() in python
   const second= parseInt(aguments[1]) || 6; // Or operator i.e. || defaults to second value if empty
