@@ -24,24 +24,24 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
 
 app.command("/lackbot-ping", async({command,ack,respond}) => {
   const start = Date.now();
-  await ack();                    // did not knew that you can pass something in the ack() block;
+  await ack();                    // did not knew that you can pass something in the ack("pass text here ig") block;
   await respond ({                 // update: It only changes text of another respond block 🥀
-    text: `Initializing Ping. :pls-just-work:`    // update: IT DOESNT WORK AT ALL
+    text: `Initializing Ping :pls-just-work:`    // update: IT DOESNT WORK AT ALL
   });  
   const end = Date.now();        
   let reply_for_ping;
   const ping = end - start;
-  if (ping <= 250) {
+  if (ping <= 100) {
     reply_for_ping = `_Dam is *bro sitting* ON the server? Pretty fast :shrug3d:_`
   }
   else if (ping >= 1000) {
     reply_for_ping = `_OH GOD, is this guy in *Antartica* or smth :sob-pray:_`
   }
   else {
-    reply_for_ping = `_Maybe try getting out of your room cause I heard wifi is faster there but idk :3c:_`
+    reply_for_ping = `_Maybe try getting out of your room cause I heard wifi is faster there :3c: but :idk:_`
   };
   await respond ({
-    text: `*lackbot is up!* :black-hole:\nRecorded Latency : ${ping}ms\n\n${reply_for_ping}`, // Added mx since the unit is not attached in .date
+    text: `*lackbot is up!* :black-hole:\nRecorded Latency : :shard: ${ping}ms\n\n${reply_for_ping}`, // Added mx since the unit is not attached in .date
     replace_original: true        // replaces the original message GONNA USE IT ON EVEYRTHING NOW FR( DOESNT WORK FOR SUM REASON )
   })
 });
@@ -56,14 +56,14 @@ app.command("/lackbot-roll", async({command,ack,respond}) => {
   const second= parseInt(aguments[1]) || 6; // Or operator i.e. || defaults to second value if empty
   var defaultchecker;       // just used var because was not sure if let stays out of if block or not
   if (first === 1 && second === 6) {
-    defaultchecker = `Note: Either no custom arguments were passed, or the user was classy (Range => 1 to 6). :tuff:`
+    defaultchecker = `_Note: Either no custom arguments were passed, or the user was :sparkles:*classy*:sparkles: (Range => 1 to 6). :tuff:_`
   }
   else {
-    defaultchecker = `Argument Range => ${first} to ${second} :dice-roll:`
+    defaultchecker = `_Argument Range => ${first} to ${second} :dice-roll:_`
   };  // basic stuff checks if user was lazy or nah (I am stupif I used square brackets for the if and else for sum reason)
   const roll= Math.floor(Math.random() * (second-first + 1)) + first; // copied from the week 4 guides + understood using AI
   await respond({
-    text: `Roll is complete :black-hole:\nThe Roll was : ${roll} :peak:\n${defaultchecker}`,
+    text: `Roll is complete :black-hole:\nThe Roll was : ${roll} :peak:\n\n${defaultchecker}`,
     replace_original: true            // learnt this argumnet just 2 commands ago lmao
   })
 });
