@@ -38,6 +38,16 @@ app.command("/lackbot-roll", async({command,ack,respond}) => {
   const aguments = command.text.split(' ');   // for some reason, it is .split(" ") in js whereas it's just .split() in py (defaults to space as cutting point)
   const first= parseInt(aguments[0]) || 1;  // Bruh parseInt is like the int() in python
   const second= parseInt(aguments[1]) || 6; // Or operator i.e. || defaults to second value if empty
-
-  const roll= Math.floor(Math.random(first,second) * (second-first + 1)) + 1;
+  var defaultchecker;       // just used var because was not sure if let stays out of if block or not
+  if (first === 1 && second === 6) {
+    defaultchecker = `Note: Either no custom arguments were passed, or the user was classy (Range => 1 to 6). :tuff:`
+  }
+  else {
+    defaultchecker = `Argument Range => ${first} to ${second} :dice-roll:`
+  };  // basic stuff checks if user was lazy or nah (I am stupif I used square brackets for the if and else for sum reason)
+  const roll= Math.floor(Math.random() * (second-first + 1)) + first;
+  await respond({
+    text: `Roll is complete :black-hole:\nThe Roll was : ${roll} :peak:\n${defaultchecker}`,
+    replace_original: true
+  })
 });
