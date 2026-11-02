@@ -1,4 +1,4 @@
-const axios = require.apply("axios");
+const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw
 require("dotenv").config();
 
 const {App} = require("@slack/bolt");
@@ -45,9 +45,14 @@ app.command("/lackbot-roll", async({command,ack,respond}) => {
   else {
     defaultchecker = `Argument Range => ${first} to ${second} :dice-roll:`
   };  // basic stuff checks if user was lazy or nah (I am stupif I used square brackets for the if and else for sum reason)
-  const roll= Math.floor(Math.random() * (second-first + 1)) + first;
+  const roll= Math.floor(Math.random() * (second-first + 1)) + first; // copied from the week 4 guides + understood using AI
   await respond({
     text: `Roll is complete :black-hole:\nThe Roll was : ${roll} :peak:\n${defaultchecker}`,
-    replace_original: true
+    replace_original: true            // learnt this argumnet just 2 commands ago lmao
   })
 });
+
+(async () => {  // copied directly from the stardance guide
+  await app.start();
+  console.log("Bot is running!");
+})();
