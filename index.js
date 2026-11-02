@@ -74,7 +74,7 @@ app.command("/lackbot-joke",async({command,ack,respond}) => {
   try {                                                       // in case the api is down or something
     const response = await axios.get("http://www.official-joke-api.appspot.com/random_joke");
     await respond ({
-      text: `_${response.data.setup}_\n\n${response.data.punchline}`,
+      text: `_${response.data.setup}_\n\n${response.data.punchline}`, // so one thing about axios which is diff than fetch() is that it gives all the return data in the .data property mhm
       response_type: "in_channel",
     })
   }                 // response type here is used to send it to the channel and not just "oNLY Visible by you"
@@ -86,15 +86,15 @@ app.command("/lackbot-joke",async({command,ack,respond}) => {
   }
 });
 
-app.command("/lackbot-quote", async(command,ack,respond) => {
+app.command("/lackbot-quote", async({command,ack,respond}) => {
   await ack();
   await respond ({
     text: `_Monday left me broken_\nBy <@U0AE3R4FR3R> (Loading Quote...)`
-  })
+  });
   try{
     const response = await axios.get("https://zenquotes.io/api/random");
-    const quote = response[0].q;   // It gives a list which has a dict. inside it
-    const author = response[0].a;
+    const quote = response.data[0].q;   // It gives a list which has a dict. inside it
+    const author = response.data[0].a;    
     await respond({
       text: `*_${quote}_*\n\n _by_ ${author}`,
       response_type : "in_channel"
