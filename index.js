@@ -22,14 +22,22 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
   })
 });
 
-app.command("/lackbot-ping", async({command.ack,respond}) => {
+app.command("/lackbot-ping", async({command,ack,respond}) => {
   const start = Date.now();
   await ack("Ping Initiated.");   // did not knew that you can pass something in the ack() block;
   const end = Date.now();
   const ping = end - start;
   await respond ({
     text: `lackbot is up! :black-hole:\nRecorded Latency:${ping}`,
-    replace_original: true
+    replace_original: true        // replaces the original message GONNA USE IT ON EVEYRTHING NOW FR
   })
 });
 
+app.command("/lackbot-roll", async({command,ack,respond}) => {
+  await ack("Rolling... :pls-just-work");
+  const aguments = command.text.split(' ');   // for some reason, it is .split(" ") in js whereas it's just .split() in py (defaults to space as cutting point)
+  const first= parseInt(aguments[0]) || 1;  // Bruh parseInt is like the int() in python
+  const second= parseInt(aguments[1]) || 6; // Or operator i.e. || defaults to second value if empty
+
+  const roll= Math.floor(Math.random(first,second) * (second-first + 1)) + 1;
+});
