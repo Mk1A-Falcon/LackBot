@@ -89,21 +89,21 @@ app.command("/lackbot-joke",async({command,ack,respond}) => {
 app.command("/lackbot-quote", async({command,ack,respond}) => {
   await ack();
   await respond ({
-    text: `_Monday left me broken_\nBy <@U0AE3R4FR3R> (Loading Quote...)`
+    text: `_"Monday left me broken"_\n\nBy <@U0AE3R4FR3R> (Loading Quote...)`
   });
   try{
     const response = await axios.get("https://zenquotes.io/api/random");
     const quote = response.data[0].q;   // It gives a list which has a dict. inside it
     const author = response.data[0].a;    
     await respond({
-      text: `*_${quote}_*\n\n _by_ ${author}`,
+      text: `*_"${quote}_"*\n\n _by_ ${author}`,
       response_type : "in_channel"
     });
   }
   catch (err) {
     console.log(err);
     await respond ({
-      text: `_Monday apparently left you broken too_ :3d-sad-emoji:\n\nError : ${err}`
+      text: `_Monday apparently left you broken too_:cat_laugh::3d-sad-emoji:\n\nError : ${err}`
     });
   };
 });
