@@ -34,7 +34,7 @@ app.command("/lackbot-ping", async({command,ack,respond}) => {
 });
 
 app.command("/lackbot-roll", async({command,ack,respond}) => {
-  await ack("Rolling... :pls-just-work");
+  await ack("Rolling... :pls-just-work:");
   const aguments = command.text.split(' ');   // for some reason, it is .split(" ") in js whereas it's just .split() in py (defaults to space as cutting point)
   const first= parseInt(aguments[0]) || 1;  // Bruh parseInt is like the int() in python
   const second= parseInt(aguments[1]) || 6; // Or operator i.e. || defaults to second value if empty
