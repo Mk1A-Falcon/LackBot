@@ -72,7 +72,7 @@ app.command("/lackbot-roll", async({command,ack,respond}) => {
 app.command("/lackbot-joke",async({command,ack,respond}) => {
   await ack("_they see me rolling, they hating :sparkles:_"); // read the documentation here http://www.official-joke-api.appspot.com/random_joke (main website is unsafe igb)
   try {                                                       // in case the api is down or something
-    const response = await axios.get("http://www.official-joke-api.appspot.com/random_joke");
+    const response = await axios.get("https://www.official-joke-api.appspot.com/random_joke");
     await respond ({
       text: `_${response.data.setup}_\n\n${response.data.punchline}`, // so one thing about axios which is diff than fetch() is that it gives all the return data in the .data property mhm
       response_type: "in_channel",
