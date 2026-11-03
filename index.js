@@ -72,7 +72,7 @@ app.command("/lackbot-roll", async({command,ack,respond}) => {
 app.command("/lackbot-joke",async({command,ack,respond}) => {
   await ack("_they see me rolling, they hating :sparkles:_"); // read the documentation here http://www.official-joke-api.appspot.com/random_joke (main website is unsafe igb)
   try {                                                       // in case the api is down or something
-    const response = await axios.get("https://www.official-joke-api.appspot.com/random_joke");
+    const response = await axios.get("http://www.official-joke-api.appspot.com/random_joke");
     await respond ({
       text: `_${response.data.setup}_\n\n${response.data.punchline}`, // so one thing about axios which is diff than fetch() is that it gives all the return data in the .data property mhm
       response_type: "in_channel",
@@ -108,11 +108,11 @@ app.command("/lackbot-quote", async({command,ack,respond}) => {
   };
 });
 
-app.message(/I am so proud of/i, async ({message,say}) => {
+app.message(/(I am so proud of|proud|:happy_ping_sock:)/i, async ({message,say}) => {
   try {
     if (message.subtype === 'bot_message') {return};
     await say ({
-      text: "_Aww So cute_ :blahaj-heart::aww:"
+      text: "_*Aww So cute*_ :blahaj-heart::aww:"
     });
   }
   catch(err) {
@@ -120,7 +120,14 @@ app.message(/I am so proud of/i, async ({message,say}) => {
     await say ({
       text: "_the bot had a error while responding :( :black-hole:_\n\n_logging error_ :pls-just-work:"
     });
-  }
+  };
+});
+
+app.message(/proud/i, async ({ message, say }) => {
+  console.log("Triggered proud handler!");
+  await say({
+    text: "_Aww So cute_ :blahaj-heart::aww:"
+  });
 });
 
 
