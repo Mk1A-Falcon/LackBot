@@ -123,12 +123,6 @@ app.message(/(I am so proud of|proud|:happy_ping_sock:)/i, async ({message,say})
   };
 });
 
-app.message(/proud/i, async ({ message, say }) => {
-  console.log("Triggered proud handler!");
-  await say({
-    text: "_Aww So cute_ :blahaj-heart::aww:"
-  });
-});
 
 
 
