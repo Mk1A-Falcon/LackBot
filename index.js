@@ -1,7 +1,7 @@
 const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw
 require("dotenv").config();
 
-const {App} = require("@slack/bolt");
+const {App, ExpressReceiver} = require("@slack/bolt");
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -81,7 +81,7 @@ app.command("/lackbot-joke",async({command,ack,respond}) => {
   catch(err) {
     console.log(err);
     await respond({           // look at albert over here ig
-      text: `_Looks like the Joke API had to make a joke... :think:_\n\n*But it was on you instead* :cat_laugh: :3d-sad-emoji:\n(Caught error => "${err}")`
+      text: `_Looks like the Joke API had to make a joke... :think:_\n\n*But it was on you instead* :cat_laugh::3d-sad-emoji:\n(Caught error => Logging :black-hole:)`
     })   
   }
 });
@@ -103,10 +103,26 @@ app.command("/lackbot-quote", async({command,ack,respond}) => {
   catch (err) {
     console.log(err);
     await respond ({
-      text: `_Monday apparently left you broken too_:cat_laugh::3d-sad-emoji:\n\nError : ${err}`
+      text: `_Monday apparently left you broken too_:cat_laugh::3d-sad-emoji:\n\n_*Logging Error*_ :pls-just-work:`
     });
   };
 });
+
+app.message(/I am so proud of/i, async ({message,say}) => {
+  try {
+    if (message.subtype === 'bot_message') {return};
+    await say ({
+      text: "_Aww So cute_ :blahaj-heart::aww:"
+    });
+  }
+  catch(err) {
+    console.log(err);
+    await say ({
+      text: "_the bot had a error while responding :( :black-hole:_\n\nlogging error :pls-just-work:"
+    });
+  }
+});
+
 
 
 (async () => {  // copied directly from the stardance guide
