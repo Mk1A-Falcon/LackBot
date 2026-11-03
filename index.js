@@ -161,6 +161,11 @@ app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
   };
 });
 
+/// automated responses end here
+
+
+
+
 
 (async () => {  // copied directly from the stardance guide
   await app.start();
