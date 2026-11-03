@@ -110,6 +110,10 @@ app.command("/lackbot-quote", async({command,ack,respond}) => {
   };
 });
 
+
+// bunch of pre-formatted replies similar to the hack club slackbot one
+
+
 app.message(/(I am so proud of|proud|:happy_ping_sock:)/i, async ({message,say}) => {
   try {
     if (message.subtype === 'bot_message') {return};
@@ -138,6 +142,22 @@ app.message(/Insert b2b here|b2b here|b2b when/i, async ({message,say}) => {
     await say ({
       text: `_Unable to Insert b2b at this time_ :pf:`
     });
+  };
+});
+
+
+app.message(/b2b is goog/i, async ({message,say}) => {
+  try {
+    if (message.subtype === "bot_message") {return};
+    await say ({
+      text: "*_b2b is life_* :sparkles:"
+    });
+  }
+  catch (boo) {
+    console.log(boo)
+    await say ({
+      text: `Unable to say smth :(\n\n_logging error_`
+    })
   };
 });
 
