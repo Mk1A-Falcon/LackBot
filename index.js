@@ -20,7 +20,7 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
     5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
     *Events-* :feels-the-aura:
-    1. _I am so proud of|proud|:happy_ping_sock:_ > Responds with a message, in channel*`
+    1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*`
   })
 });
 
@@ -113,7 +113,7 @@ app.command("/lackbot-quote", async({command,ack,respond}) => {
 app.message(/(I am so proud of|proud|:happy_ping_sock:)/i, async ({message,say}) => {
   try {
     if (message.subtype === 'bot_message') {return};
-    await say ({
+    await say ({        // aah Idk what to explain here tbh, new attributes =>  message say instead of the usual command, ack, respond 
       text: "_*Aww So cute*_ :blahaj-heart::aww:"
     });
   }
@@ -126,6 +126,20 @@ app.message(/(I am so proud of|proud|:happy_ping_sock:)/i, async ({message,say})
 });
 
 
+app.message(/Insert b2b here|b2b here|b2b when/i, async ({message,say}) => { 
+  try {
+    if (message.subtype === `bot_message`) {return};
+    await say ({
+      text: `What did the baguette do this time : https://hackclub.enterprise.slack.com/docs/T0266FRGM/F0BNZ7QGEUQ`
+    });
+  }
+  catch(boo) {
+    console.log(boo);
+    await say ({
+      text: `_Unable to Insert b2b at this time_ :pf:`
+    });
+  };
+});
 
 
 (async () => {  // copied directly from the stardance guide
