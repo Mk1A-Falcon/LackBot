@@ -146,7 +146,7 @@ app.message(/Insert b2b here|b2b here|b2b when/i, async ({message,say}) => {
 });
 
 
-app.message(/b2b is goog/i, async ({message,say}) => {
+app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
   try {
     if (message.subtype === "bot_message") {return};
     await say ({
