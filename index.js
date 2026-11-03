@@ -89,7 +89,7 @@ app.command("/lackbot-joke",async({command,ack,respond}) => {
 app.command("/lackbot-quote", async({command,ack,respond}) => {
   await ack();
   await respond ({
-    text: `_"Monday left me broken"_\n\nBy <@U0AE3R4FR3R> (Loading Quote...)`
+    text: `_*"Monday left me broken"*_\n\n_By_ <@U0AE3R4FR3R> (Loading quote... :pls-just-work:) `
   });
   try{
     const response = await axios.get("https://zenquotes.io/api/random");
@@ -118,7 +118,7 @@ app.message(/I am so proud of/i, async ({message,say}) => {
   catch(err) {
     console.log(err);
     await say ({
-      text: "_the bot had a error while responding :( :black-hole:_\n\nlogging error :pls-just-work:"
+      text: "_the bot had a error while responding :( :black-hole:_\n\n_logging error_ :pls-just-work:"
     });
   }
 });
