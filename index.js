@@ -13,12 +13,14 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
   await ack();      // I made the zen-quotes emoji just for this lol :)
   await respond({
     text: `Lackbot is a *slackbot* developed by <@U0AE3R4FR3R> which lacks a lot of *important features* :fah:
-    Available Commands-
+    *Available Commands-*
     1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
     2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
     3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
-    5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:`
+    5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
+    *Events-* :feels-the-aura:
+    1. _I am so proud of|proud|:happy_ping_sock:_ > Responds with a message, in channel*`
   })
 });
 
