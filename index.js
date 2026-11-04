@@ -2,6 +2,7 @@ require("dotenv").config();  // Changed order so dotenv is on top
 const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw
 const { GoogleGenAI } = require("@google/genai");   // Just copied it from the documentation thingy
 
+const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
 
 const {App, ExpressReceiver} = require("@slack/bolt");
 
@@ -167,10 +168,34 @@ app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
 
 /// automated responses end here
 
+
+
 /// aI response via Gemini studio or google ai studio whatever it is called
 /// Works by pinging the bot in a @app_mention in a puclic channel? Am not sure
 
+app.event("app_mention", async ({ event,client,say }) => {
+  try {
+    const prompt = event.text.replace(/<@[^>]+>/g, "").trim();        // what this does is strips the @app itself from the prompt, Idk how it works, This is a copied logic which apparently 90% of "industrial" slackbots use (copied from a repo and then prompted Gemini to explain this)
+        if (prompt === "") {
+          if (AdminUsers.includes(event.user)) {
+            await say ({
+              text: `_Yooooo What's up :3c: Did you know <@U0AE3R4FR3R> *Added you as a admin*_ :blahaj-heart:`
+            })
+          }
+          else {
+            await say ({
+              text: `:black-hole: _What's up_ :hii:`
+            })
+          };
+        }
+    else {
 
+    }
+  }
+  catch {
+
+  };
+});
 
 
 
