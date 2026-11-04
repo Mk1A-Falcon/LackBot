@@ -1,8 +1,13 @@
+require("dotenv").config();  // Changed order so dotenv is on top
 const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw
-require("dotenv").config();
+const { GoogleGenAI } = require("@google/genai");   // Just copied it from the documentation thingy
+
 
 const {App, ExpressReceiver} = require("@slack/bolt");
 
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY
+});
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   appToken: process.env.SLACK_APP_TOKEN,
@@ -113,7 +118,6 @@ app.command("/lackbot-quote", async({command,ack,respond}) => {
 
 // bunch of pre-formatted replies similar to the hack club slackbot one
 
-
 app.message(/(I am so proud of|proud|:happy_ping_sock:)/i, async ({message,say}) => {
   try {
     if (message.subtype === 'bot_message') {return};
@@ -162,6 +166,9 @@ app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
 });
 
 /// automated responses end here
+
+/// aI response via Gemini studio or google ai studio whatever it is called
+/// Works by pinging the bot in a @app_mention in a puclic channel? Am not sure
 
 
 
