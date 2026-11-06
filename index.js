@@ -175,9 +175,12 @@ app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
 
 app.event("app_mention", async ({ event,client,say }) => {
   try {
+    await client.chat.postEphemeral ({              // await command({}); automatically makes it send to user only but in events we follow a different procedure 
+      text: `:black-hole: Working on it :happi:`,   // this type of messaging only to the user, is called response_type/thread_ts : ephemeral whih is on by default in commands :>
+    });
     const prompt = event.text.replace(/<@[^>]+>/g, "").trim();        // what this does is strips the @app itself from the prompt, Idk how it works, This is a copied logic which apparently 90% of "industrial" slackbots use (copied from a repo and then prompted Gemini to explain this)
         if (prompt === "") {
-          if (AdminUsers.includes(event.user)) {
+          if (AdminUsers.includes(event.user)) {            // Defined a adminusers's list on the very top of the program 
             await say ({
               text: `_Yooooo What's up :3c: Did you know <@U0AE3R4FR3R> *Added you as a admin*_ :blahaj-heart:`
             })
@@ -188,12 +191,22 @@ app.event("app_mention", async ({ event,client,say }) => {
             })
           };
         }
-    else {
-
-    }
+        else {
+          const response_ai = await ai.models.generateCONTENT ({
+            model: "gemini-2.5-flash",
+            contents: "prompt",
+            config: {
+              systemInstruction : "You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, `inlinecode`, and ```blockquotes```. ALSO RESPOND IN A very compact/concise manner like try to limit yourself at just 15 words(above is okay but try not to)."
+            }
+          });
+          
+          
+        }
   }
   catch {
-
+    await client.chat.postEphemeral ({
+      text: `:Black-hole: Working on it :happi:`
+    })
   };
 });
 
