@@ -271,7 +271,15 @@ app.event("app_mention", async ({ event,client,say }) => {
 
 
 // ai command-
-app.command("/lackbot-brief", async({command,ack,respond}))
+app.command("/lackbot-brief", async({command,ack,respond}) => {
+  await ack();
+  try {
+    
+  }
+  catch {
+
+  }
+});
 
 
 
