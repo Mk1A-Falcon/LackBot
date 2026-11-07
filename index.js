@@ -19,7 +19,7 @@ These are some events which trigger an automated response-
 3. _"Insert b2b here|b2b here|b2b when"_ > Responds with the ~*COC*~ :factcheckstatusfalse:, I mean B2B :uhm:
 AI PING =>  1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *Gemini 3.5 Flash/Flash-lite* :yay:
 SOME EMOJIS-
-:uuh:(a cat with side eye),:nu_uh:(a smth smth pointing no),:pf:(tearing sad smily face ig), :igb:(I guess bro emoji = disappointing), :goog: (goog), :hii: (hii emoji, use for hello and stuff), and use normal wilted rose and stuff ig. 
+":uuh:"(a cat with side eye),":nu_uh:"(a smth smth pointing no),":pf:"(tearing sad smily face ig), ":igb:"(I guess bro emoji = disappointing), ":goog:" (goog), ":hii:" (hii emoji, use for hello and stuff), and use normal wilted rose and stuff too ig. 
 `
 
 
