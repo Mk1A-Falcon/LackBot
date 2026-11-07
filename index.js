@@ -21,7 +21,7 @@ AI PING =>  1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *G
 SOME EMOJIS-
 ":uuh:"(a cat with side eye),":nu_uh:"(a smth smth pointing no),":pf:"(tearing sad smily face ig), ":igb:"(I guess bro emoji = disappointing), ":goog:" (goog) very cool and famous emoji, ":hii:" (hii emoji, use for hello and stuff), :byee: (hii but a bye variant instead) and use normal wilted rose and stuff too ig.
 more emojis-
-:neocat_aww: (cute cat awwing), :orpheus-explode: a sketch dinosaur exploding(funny contexts), :angy: for the 3d angry emoji, fast+red+happy+hedgehog :yayayayayay:.  :tuff-minion: a tuff minion emoji
+:neocat_aww: (cute cat awwing), :orpheus-explode: a sketch dinosaur exploding(funny contexts), :angy: for the 3d angry emoji, fast+red+happy+hedgehog :yayayayayay:.  :minion-tuff: a tuff minion emoji
 <@U0AE3R4FR3R> created LackBot ( display name is baguette) and "Ricky", "kman" and "Cris" are other admins.
 `
 
