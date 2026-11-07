@@ -2,6 +2,19 @@ require("dotenv").config();  // Changed order so dotenv is on top
 const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw
 const { GoogleGenAI } = require("@google/genai");   // Just copied it from the documentation thingy
 
+
+const systemInstructions = 
+`You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, ``, ``` ``` etc.
+Try to respond in a compact/concise manner(more is okay but try not to).
+These are the availaible help commands-
+1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
+2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
+3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 
+4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 
+5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
+Additionally these users are admins-
+${AdminUsers} (do not ping them)`
+
 const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
 
 const {App, ExpressReceiver} = require("@slack/bolt");
@@ -18,15 +31,20 @@ const app = new App({
 app.command("/lackbot-help",async({command,ack,respond}) => {
   await ack();      // I made the zen-quotes emoji just for this lol :)
   await respond({
-    text: `Lackbot is a *slackbot* developed by <@U0AE3R4FR3R> which lacks a lot of *important features* :fah:
-    *Available Commands-*
+    text: `Lackbot is a *slackbot* developed by <@U0AE3R4FR3R> which may lack a lot of *important features* :fah:
+  *Available Commands-*
     1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
     2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
     3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
     5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-    *Events-* :feels-the-aura:
-    1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*`
+    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a private manner. (only visible to user/op) :private_channel:
+  *Events-* :feels-the-aura:
+    1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
+    2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
+    3. _"Insert b2b here|b2b here|b2b when"_ > Responds with the ~*COC*~ :factcheckstatusfalse:, I mean B2B :uhm:
+  *App_Mentions-* :peak:
+    1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *Gemini 3.5 Flash/Flash-lite* :yay:`
   })
 });
 
@@ -198,7 +216,7 @@ app.event("app_mention", async ({ event,client,say }) => {
           model: "gemini-3.5-flash",
           contents: `${prompt}`,
           config: {
-            systemInstruction : "You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, `inlinecode`, and ```blockquotes```. Try to respond in A compact/concise manner(above is okay but try not to).1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help: 2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes: "
+            systemInstruction : `${systemInstructions}`
           }
         });
         await say ({
@@ -210,7 +228,7 @@ app.event("app_mention", async ({ event,client,say }) => {
     try {
       console.log(err);
       await client.chat.postEphemeral ({
-        text: `Model 1 Failed, Switching to gemini-3.5-flash-lite`,
+        text: `_Model 1 Failed_, Switching to *gemini-3.5-flash-lite*`,
         channel: event.channel,
         user: event.user
       });
@@ -218,7 +236,7 @@ app.event("app_mention", async ({ event,client,say }) => {
         model: "gemini-3.5-flash-lite",
         contents: `${prompt}`,
         config: {
-            systemInstruction : "You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, `inlinecode`, and ```blockquotes```. Try to respond in A compact/concise manner(above is okay but try not to).1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help: 2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes: "
+            systemInstruction : `${systemInstructions}`
         }
       });
       await say ({
