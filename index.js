@@ -174,12 +174,13 @@ app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
 /// Works by pinging the bot in a @app_mention in a puclic channel? Am not sure
 
 app.event("app_mention", async ({ event,client,say }) => {
+  const prompt = event.text.replace(/<@[^>]+>/g, " ").trim();        // what this does is strips the @app itself from the prompt, Idk how it works, This is a copied logic which apparently 90% of "industrial" slackbots use (copied from a repo and then prompted Gemini to explain this)
   try {
     await client.chat.postEphemeral ({              // await command({}); automatically makes it send to user only but in events we follow a different procedure 
       text: `:black-hole: Working on it :happi:`,   // this type of messaging only to the user, is called response_type/thread_ts : ephemeral whih is on by default in commands :>
+      channel: event.channel,
+      user: event.user 
     });
-    let
-    const prompt = event.text.replace(/<@[^>]+>/g, "").trim();        // what this does is strips the @app itself from the prompt, Idk how it works, This is a copied logic which apparently 90% of "industrial" slackbots use (copied from a repo and then prompted Gemini to explain this)
       if (prompt === "") {
         if (AdminUsers.includes(event.user)) {            // Defined a adminusers's list on the very top of the program 
           await say ({
@@ -191,23 +192,45 @@ app.event("app_mention", async ({ event,client,say }) => {
             text: `:black-hole: _What's up_ :hii:`
           })
         };
-        }
+      }
       else {
         const response_ai = await ai.models.generateContent ({
-          model: "gemini-2.5-flash",
-          contents: "prompt",
+          model: "gemini-3.5-flash",
+          contents: `${prompt}`,
           config: {
-            systemInstruction : "You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, `inlinecode`, and ```blockquotes```. ALSO RESPOND IN A very compact/concise manner like try to limit yourself at just 15 words(above is okay but try not to)."
+            systemInstruction : "You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, `inlinecode`, and ```blockquotes```. Try to respond in A compact/concise manner(above is okay but try not to).1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help: 2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes: "
           }
         });
-
-          
-        }
+        await say ({
+          text: `${response_ai.text}`
+        });    
+      }
   }
-  catch {
-    await client.chat.postEphemeral ({
-      text: `:Black-hole: Working on it :happi:`
-    })
+  catch (err) {
+    try {
+      console.log(err);
+      await client.chat.postEphemeral ({
+        text: `Model 1 Failed, Switching to gemini-3.5-flash-lite`,
+        channel: event.channel,
+        user: event.user
+      });
+      const secondary_response_ai = await ai.models.generateContent ({
+        model: "gemini-3.5-flash-lite",
+        contents: `${prompt}`,
+        config: {
+            systemInstruction : "You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, `inlinecode`, and ```blockquotes```. Try to respond in A compact/concise manner(above is okay but try not to).1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help: 2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes: "
+        }
+      });
+      await say ({
+        text: `${secondary_response_ai.text}`
+      })
+    }
+    catch(err){
+      console.log(err);
+      await say ({
+        text: `_Failed 2 models already_ :3d-sad-emoji: \n\n_Please contact <@U0AE3R4FR3R> if you feel this is a bug, or wait a bit before retrying_ :byee:`
+      });
+    };
   };
 });
 
