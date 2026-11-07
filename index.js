@@ -12,8 +12,17 @@ These are the availaible help commands-
 3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 
 4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 
 5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
+6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:
+These are some events which trigger an automated response-
+1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
+2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
+3. _"Insert b2b here|b2b here|b2b when"_ > Responds with the ~*COC*~ :factcheckstatusfalse:, I mean B2B :uhm:
+AI PING =>  1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *Gemini 3.5 Flash/Flash-lite* :yay:
+SOME EMOJIS-
+:uuh:(a cat with side eye),:nu_uh:(a smth smth pointing no),:pf:(tearing sad smily face ig), :igb:(I guess bro emoji = disappointing), :goog: (goog), :hii: (hii emoji, use for hello and stuff), and use normal wilted rose and stuff ig. 
 Additionally these users are admins-
 ${AdminUsers} (do not ping them)`
+
 
 const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
 
@@ -38,7 +47,7 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
     3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
     5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a private manner. (only visible to user/op) :private_channel:
+    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:
   *Events-* :feels-the-aura:
     1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
     2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
