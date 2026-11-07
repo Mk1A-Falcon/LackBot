@@ -39,18 +39,18 @@ const app = new App({
 app.command("/lackbot-help",async({command,ack,respond}) => {
   await ack();      // I made the zen-quotes emoji just for this lol :)
   await respond({
-    text: `Lackbot is a *slackbot* developed by <@U0AE3R4FR3R> which may lack a lot of *important features* :fah:
+    text: `Lackbot is a *slackbot* developed by <@U0AE3R4FR3R> which may lack a lot of *important features* :fah:\n
   *Available Commands-*
     1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
     2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
     3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
     5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:
+    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:\n
   *Events-* :feels-the-aura:
     1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
     2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
-    3. _"Insert b2b here|b2b here|b2b when"_ > Responds with the ~*COC*~ :factcheckstatusfalse:, I mean B2B :uhm:
+    3. _"Insert b2b here|b2b here|b2b when"_ > Responds with the ~*COC*~ :factcheckstatusfalse:, I mean B2B :uhm:\n
   *App_Mentions-* :peak:
     1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *Gemini 3.5 Flash/Flash-lite* :yay:`
   })
