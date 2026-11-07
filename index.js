@@ -242,7 +242,7 @@ app.event("app_mention", async ({ event,client,say }) => {
     try {
       console.log(err);
       await client.chat.postEphemeral ({
-        text: `_Model 1 Failed(3.5 flash lite)_, Switching to *gemini-3.1-flash-lite*`,
+        text: `_Model 1 Failed(3.5 flash lite)_, Switching to *gemini-3.1-flash-lite*`, /// hellpo???
         channel: event.channel,
         user: event.user,
         thread_ts: thread_ts
@@ -274,7 +274,7 @@ app.event("app_mention", async ({ event,client,say }) => {
 app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
   try {
-    
+
   }
   catch {
 
