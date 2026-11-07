@@ -198,37 +198,43 @@ app.message(/b2b is goog|b2b is love/i, async ({message,say}) => {
 
 /// aI response via Gemini studio or google ai studio whatever it is called
 /// Works by pinging the bot in a @app_mention in a puclic channel? Am not sure
+// One more thing is that app_mention are only using the flash lite versions because I don't want it to go overboard, the Command uses the proper flash version instead 
 
 app.event("app_mention", async ({ event,client,say }) => {
+  const thread_ts = event.thread_ts;                                 //Alright so added thread_ts logic, what this does is sends the reponse in the channel/thread precisely instead of it responding in the main channel for a ping whihc was done in a thread!
   const prompt = event.text.replace(/<@[^>]+>/g, " ").trim();        // what this does is strips the @app itself from the prompt, Idk how it works, This is a copied logic which apparently 90% of "industrial" slackbots use (copied from a repo and then prompted Gemini to explain this)
   try {
     await client.chat.postEphemeral ({              // await command({}); automatically makes it send to user only but in events we follow a different procedure 
       text: `:black-hole: Working on it :happi:`,   // this type of messaging only to the user, is called response_type/thread_ts : ephemeral whih is on by default in commands :>
       channel: event.channel,
-      user: event.user 
+      user: event.user,
+      thread_ts: thread_ts
     });
       if (prompt === "") {
         if (AdminUsers.includes(event.user)) {            // Defined a adminusers's list on the very top of the program 
           await say ({
-            text: `_Yooooo What's up :HII::3c: Did you know <@U0AE3R4FR3R> *Added you as a admin*_ :blahaj-heart:`
+            text: `_Yooooo What's up :HII::3c: Did you know <@U0AE3R4FR3R> *Added you as a admin*_ :blahaj-heart:`,
+            thread_ts: thread_ts  
           })
         }
         else {
           await say ({
-            text: `:black-hole: _What's up_ :hii:`
+            text: `:black-hole: _What's up_ :hii:`,
+            thread_ts: thread_ts,
           })
         };
       }
       else {
         const response_ai = await ai.models.generateContent ({
-          model: "gemini-3.5-flash",
+          model: "gemini-3.5-flash-lite",
           contents: `${prompt}`,
           config: {
             systemInstruction : `${systemInstructions}`
           }
         });
         await say ({
-          text: `${response_ai.text}`
+          text: `${response_ai.text}`,
+          thread_ts: thread_ts,
         });    
       }
   }
@@ -236,29 +242,36 @@ app.event("app_mention", async ({ event,client,say }) => {
     try {
       console.log(err);
       await client.chat.postEphemeral ({
-        text: `_Model 1 Failed_, Switching to *gemini-3.5-flash-lite*`,
+        text: `_Model 1 Failed(3.5 flash lite)_, Switching to *gemini-3.1-flash-lite*`,
         channel: event.channel,
-        user: event.user
+        user: event.user,
+        thread_ts: thread_ts
       });
       const secondary_response_ai = await ai.models.generateContent ({
-        model: "gemini-3.5-flash-lite",
+        model: "gemini-3.1-flash-lite",
         contents: `${prompt}`,
         config: {
             systemInstruction : `${systemInstructions}`
         }
       });
       await say ({
-        text: `${secondary_response_ai.text}`
+        text: `${secondary_response_ai.text}`,
+        thread_ts: thread_ts
       })
     }
     catch(err){
       console.log(err);
       await say ({
-        text: `_Failed 2 models already_ :3d-sad-emoji: \n\n_Please contact <@U0AE3R4FR3R> if you feel this is a bug, or wait a bit before retrying_ :byee:`
+        text: `_Failed 2 models already_ :3d-sad-emoji: \n\n_Please contact <@U0AE3R4FR3R> if you feel this is a bug, or wait a bit before retrying_ :byee:`,
+        thread_ts: thread_ts
       });
     };
   };
 });
+
+
+// ai command-
+app.command("/lackbot-brief", async({command,ack,respond}))
 
 
 
