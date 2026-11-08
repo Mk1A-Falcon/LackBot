@@ -29,6 +29,7 @@ more emojis-
 const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
 
 const {App, ExpressReceiver} = require("@slack/bolt");
+const { buildUrlVerificationResponse } = require("@slack/bolt/dist/receivers/HTTPModuleFunctions");
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
@@ -276,11 +277,25 @@ app.event("app_mention", async ({ event,client,say }) => {
 // ai command-
 app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
+  const prompt = command.text;
   try {
-
+    const ai_RESPONSE = await ai.models.generateContent ({
+      model: ``,
+      contents: `${prompt}`,
+      config : {
+      systemInstructions: `${systemInstructions-brief}`
+      }
+    })
   }
   catch {
+    try {
+      const ai_RESPONSE = await ai.models.generateContent ({
 
+      })
+    }
+    catch {
+      const ai_RESPONSE
+    }
   }
 });
 
