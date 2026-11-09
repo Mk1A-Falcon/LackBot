@@ -286,59 +286,7 @@ app.event("app_mention", async ({ event,client,say }) => {
 app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
   const prompt = command.text;
-  try {
-    const ai_RESPONSE = await ai.models.generateContent ({
-      model: ``,
-      contents: `${prompt}`,
-      config : {
-      systemInstructions: `${systemInstructions-brief}`
-      }
-    });
-    await respond ({
-      text: `ai_RESPONSE`,
-    })
-  }
-  catch {
-    try {
-      const ai_RESPONSE = await ai.models.generateContent ({
-        model: ``,
-        contents: `${prompt}`,
-        config : {
-          systemInstruction: `${systemInstructions_brief}`
-        }
-      });    
-      await respond ({
-        text: `ai_RESPONSE`,
-      });
-    }
-    catch {
-      const ai_RESPONSE = await ai.models.generateContent ({
-        model: ``,
-        contents : `${prompt}`,
-        config : {
-          systemInstruction: `${systemInstructions_brief}`
-        }
-      });
-      await respond ({
-        text: ai_RESPONSE,
-      })
-        try {
-          const ai_RESPONSE = await ai.models.generateContent({
-            model: ``,
-            contents : `${prompt}`,
-           config : { 
-            systemInstruction: `${systemInstructions_brief}`
-           }
-          })
-        }
-        catch {
-          
-        }
-     
-    }
-  }
-});
-
+  
 
 
 (async () => {  // copied directly from the stardance guide
