@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "@google/genai": "^2.32.0",
+    "@openrouter/sdk": "^1.5.70",
     "@slack/bolt": "^5.1.0",
     "axios": "^1.21.0",
     "dotenv": "^18.0.9"

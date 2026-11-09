@@ -1,7 +1,7 @@
 require("dotenv").config();  // Changed order so dotenv is on top
-const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw
-const { GoogleGenAI } = require("@google/genai");   // Just copied it from the documentation thingy
-
+const axios = require("axios");   // got changed to require.apply automatically so caused 4 errors btw  // for api pulls 
+const { GoogleGenAI } = require("@google/genai");   // Just copied it from the documentation thingy     // for ai via google studio
+const { OpenRouter } = require("@openrouter/sdk");    // https://docs.ai.hackclub.com/                  // for ai via Hcai
 
 const systemInstructions = 
 `You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, etc.
@@ -31,9 +31,15 @@ const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] 
 const {App, ExpressReceiver} = require("@slack/bolt");
 const { buildUrlVerificationResponse } = require("@slack/bolt/dist/receivers/HTTPModuleFunctions");
 
+const hcai =  new OpenRouter({
+  apiKey: process.env.HCAI_API_KEY,                         // read the documentation here > https://docs.ai.hackclub.com/
+  serverURL: "https://ai.hackclub.com/proxy/v1",
+});
+
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
 });
+
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   appToken: process.env.SLACK_APP_TOKEN,
