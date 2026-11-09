@@ -31,6 +31,7 @@ more emojis-
 const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
 
 const {App, ExpressReceiver} = require("@slack/bolt");
+const { buildUrlVerificationResponse } = require("@slack/bolt/dist/receivers/HTTPModuleFunctions");
 
 const hcai =  new OpenRouter({
   apiKey: process.env.HCAI_API_KEY,                         // read the documentation here > https://docs.ai.hackclub.com/
@@ -286,7 +287,7 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
   const prompt = command.text;
   try {
-
+    
   }
   catch {
 
