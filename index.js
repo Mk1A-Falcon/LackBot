@@ -285,16 +285,48 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
       config : {
       systemInstructions: `${systemInstructions-brief}`
       }
+    });
+    await respond ({
+      text: `ai_RESPONSE`,
     })
   }
   catch {
     try {
       const ai_RESPONSE = await ai.models.generateContent ({
-
-      })
+        model: ``,
+        contents: `${prompt}`,
+        config : {
+          systemInstruction: `${systemInstructions_brief}`
+        }
+      });    
+      await respond ({
+        text: `ai_RESPONSE`,
+      });
     }
     catch {
-      const ai_RESPONSE
+      const ai_RESPONSE = await ai.models.generateContent ({
+        model: ``,
+        contents : `${prompt}`,
+        config : {
+          systemInstruction: `${systemInstructions_brief}`
+        }
+      });
+      await respond ({
+        text: ai_RESPONSE,
+      })
+        try {
+          const ai_RESPONSE = await ai.models.generateContent({
+            model: ``,
+            contents : `${prompt}`,
+           config : { 
+            systemInstruction: `${systemInstructions_brief}`
+           }
+          })
+        }
+        catch {
+          
+        }
+     
     }
   }
 });
