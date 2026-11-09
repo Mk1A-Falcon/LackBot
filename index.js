@@ -24,6 +24,7 @@ more emojis-
 :neocat_aww: (cute cat awwing), :orpheus-explode: a sketch dinosaur exploding(funny contexts), :angy: for the 3d angry emoji, fast+red+happy+hedgehog :yayayayayay:.  :minion-tuff: a tOUGH minion emoji(minions from despicable)
 <@U0AE3R4FR3R> created LackBot ( display name is baguette) and "Ricky", "kman" and "Cris" are other admins.
 @baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
+@baguette and @kman are Orgs whereas Ricky is Idk he does something
 `
 
 
