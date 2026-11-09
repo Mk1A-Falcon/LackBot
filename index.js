@@ -286,7 +286,13 @@ app.event("app_mention", async ({ event,client,say }) => {
 app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
   const prompt = command.text;
-  
+  try {
+    
+  }
+  catch {
+
+  }
+});
 
 
 (async () => {  // copied directly from the stardance guide
