@@ -4,7 +4,7 @@ const { GoogleGenAI } = require("@google/genai");   // Just copied it from the d
 const { OpenRouter } = require("@openrouter/sdk");    // https://docs.ai.hackclub.com/                  // for ai via Hcai
 
 
-const { AdminUsers, systemInstruction , systemInstructions_Brief } = require(`./config`);
+const { AdminUsers, systemInstructions , systemInstructions_Brief } = require(`./config`);
 
 
 
