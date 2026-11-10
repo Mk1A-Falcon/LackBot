@@ -60,7 +60,7 @@ const { Role } = require("@openrouter/sdk/models/operations");
 
 const hcai =  new OpenRouter({
   apiKey: process.env.HCAI_API_KEY,                         // read the documentation here > https://docs.ai.hackclub.com/
-  baseURL: "https://ai.hackclub.com/proxy/v1",
+  serverURL: "https://ai.hackclub.com/proxy/v1",
 });
 
 const ai = new GoogleGenAI({
@@ -307,6 +307,10 @@ app.event("app_mention", async ({ event,client,say }) => {
 });
 
 
+
+
+// NOTE- The next command was debugged using ai as a last resort(only one parameter but still) because apparently docs.ai.hackclub.com are outdated or smth since outputs are needed to be enclosed in chatRequest : {}
+
 // ai command-
 app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
@@ -319,12 +323,14 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
   }
   try {
     const Response = await hcai.chat.send({
+      chatRequest : {
       model: "openai/gpt-6-luna-pro:batch",       // LMAO THE PRO VERSION IS CHEAPER THAN THE MAIN VERSION I AM CRINE https://ai.hackclub.com/models/openai/gpt-6-luna-pro:batch    https://ai.hackclub.com/models/openai/gpt-6-luna
       messages: [                                 // I have no idea why this is so different than Gemini but all I know it that "system" here sends the prompt instructions and "useR" is the prompt itself 
         { role : "system", content : `${systemInstructions_Brief}` },
         { role : "user", content: `${prompt}` }
       ],
       stream: false,        // waht this line does is sends the whole answer at once rather than what you see on normal apps like each word loads one by one
+      }
     });
     await respond ({
       text: `${Response.choices[0].message.content}`,                     // https://docs.ai.hackclub.com/api/chat-completions.html#example-request
@@ -334,13 +340,15 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
     console.log(err)
     try {
       const Response =  await hcai.chat.send({
-        model: "openai/gpt-6-luna",
-        messages: [
-          {role : "system", content: `${systemInstructions_Brief}`},
-          {role : "user", content: `${prompt}`},
-        ],
-        stream: false,
-      })
+        chatRequest : {
+          model: "openai/gpt-6-luna",
+          messages: [
+            {role : "system", content: `${systemInstructions_Brief}`},
+            {role : "user", content: `${prompt}`},
+          ],
+          stream: false,
+        }
+      });
       await respond ({
         text: `${Response.choices[0].message.content}`,
       })
@@ -349,13 +357,15 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
       console.log(err)
       try {
         const Response = await hcai.chat.send({
-          model : `anthropic/claude-haiku-5.5:batch`,
-          messages: [
-            {role: "system", content: `${systemInstructions_Brief}`},
-            {role: "user" , content: `${prompt}`}
-          ],
-          stream: false,
-        })
+          chatRequest: {
+            model : `anthropic/claude-haiku-5.5:batch`,
+            messages: [
+              {role: "system", content: `${systemInstructions_Brief}`},
+              {role: "user" , content: `${prompt}`}
+            ],
+            stream: false,
+          }
+        });
         await respond ({
           text: `${Response.choices[0].message.content}`
         })
