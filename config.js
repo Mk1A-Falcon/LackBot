@@ -2,6 +2,10 @@
 
 const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
 
+const Monday_left_baggy_broken = `On the unsuspecting night of 25th September, 2026
+A dumbass with little help(incitement those they do in riots) from @ayesha(U0BDPJK4MT4) bought keycaps for 50 stardust.
+ Little did he know that those keycaps were 300$ amounting to over 190$ in customs :sonbaby-anim:
+ Legends say The baguette still awaits his parcel...`
 
 const systemInstructions = 
 `You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, etc.
@@ -25,6 +29,7 @@ more emojis-
 <@U0AE3R4FR3R> created LackBot ( display name is baguette) and "Ricky", "kman" and "Cris" are other admins.
 @baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
 @baguette and @kman are Orgs whereas Ricky is Idk he does something
+${Monday_left_baggy_broken}
 `;
 
 
@@ -50,6 +55,7 @@ AI PING =>  1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *G
 <@U0AE3R4FR3R> created LackBot ( display name is baguette) and "Ricky", "kman" and "Cris" are other admins.
 @baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
 @baguette and @kman are Orgs whereas Ricky is Idk he does something
+${Monday_left_baggy_broken}
 `;
 
 module.exports = { AdminUsers, systemInstructions, systemInstructions_Brief };

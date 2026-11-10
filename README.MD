@@ -1,0 +1,3 @@
+# LackBot 
+A slackbot for my personal channel to ~~bully~~, I mean a HackClub slackbot that lacks some necessary features....
+
