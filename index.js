@@ -32,6 +32,8 @@ const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] 
 
 const {App, ExpressReceiver} = require("@slack/bolt");
 const { buildUrlVerificationResponse } = require("@slack/bolt/dist/receivers/HTTPModuleFunctions");
+const { Openrouter } = require("@openrouter/sdk/models");
+const { Role } = require("@openrouter/sdk/models/operations");
 
 const hcai =  new OpenRouter({
   apiKey: process.env.HCAI_API_KEY,                         // read the documentation here > https://docs.ai.hackclub.com/
@@ -286,11 +288,31 @@ app.event("app_mention", async ({ event,client,say }) => {
 app.command("/lackbot-brief", async({command,ack,respond}) => {
   await ack();
   const prompt = command.text;
+  if (prompt==="" || prompt === " "){
+    await respond ({
+      text: `Please *provide a argument* to process :black-hole:\n*Usage Instructions-*  _/lackbot-brief_ <prompt>`
+    })
+    return;
+  }
   try {
-    
+    const Response = await OpenRouter.chat.send({
+      model: "openai/gpt-6-luna-pro:batch",       // LMAO THE PRO VERSION IS CHEAPER THAN THE MAIN VERSION I AM CRINE https://ai.hackclub.com/models/openai/gpt-6-luna-pro:batch    https://ai.hackclub.com/models/openai/gpt-6-luna
+      messages: [                                 // I have no idea why this is so different than Gemini but all I know it that "system" here sends the prompt instructions and "useR" is the prompt itself 
+        { role : "system", content : `${systemInstructions-Brief}` },
+        { role : "user", content: `${prompt}` }
+      ],
+      stream: false,        // waht this line does is sends the whole answer at once rather than what you see on normal apps like each word loads one by one
+    });
   }
   catch {
-
+    try {
+      const Response =  await OpenRouter.chat.send({
+        model: "openai/gpt-6-luna"
+      })
+    }
+    catch {
+      
+    }
   }
 });
 
