@@ -1,2 +1,6 @@
 node_modules
+# too big to commit
 .env
+# secrest stuff that is actually dangerous
+config.js 
+# Uhhs secret stuff
