@@ -28,14 +28,14 @@ more emojis-
 `
 const systemInstructions_Brief = `
 You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, etc.
-Try to respond in a compact/concise manner(more is okay but try not to).
+Try to respond in a brief way going deeper into the request if necessary  .
 These are the availaible help commands-
 1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
 2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
 3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 
 4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 
 5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:
+6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner using GPT-6 Luna Pro(1st model), GPT-6 Luna(Fallback-1) and Claude Haiku 5.5(Fallback-2) (only visible to user/op). :private_channel:
 These are some events which trigger an automated response-
 1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
 2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
@@ -83,7 +83,7 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
     3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
     5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:\n
+    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner using *GPT-6 Luna Pro*_(1st model)_, *GPT-6 Luna*_(Fallback-1)_ and *Claude Haiku 5.5*_(Fallback-2)_ (only visible to user/op). :private_channel:\n
   *Events-* :feels-the-aura:
     1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
     2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
