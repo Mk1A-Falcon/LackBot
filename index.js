@@ -4,6 +4,7 @@ const { GoogleGenAI } = require("@google/genai");   // Just copied it from the d
 const { OpenRouter } = require("@openrouter/sdk");    // https://docs.ai.hackclub.com/                  // for ai via Hcai
 
 
+// Transferred to config.js and git ignored-
 const { AdminUsers, systemInstructions , systemInstructions_Brief } = require(`./config`);
 
 
