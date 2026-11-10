@@ -26,6 +26,29 @@ more emojis-
 @baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
 @baguette and @kman are Orgs whereas Ricky is Idk he does something
 `
+const systemInstructions_Brief = `
+You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, etc.
+Try to respond in a compact/concise manner(more is okay but try not to).
+These are the availaible help commands-
+1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
+2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
+3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 
+4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 
+5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
+6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner (only visible to user/op). :private_channel:
+These are some events which trigger an automated response-
+1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
+2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
+3. _"Insert b2b here|b2b here|b2b when"_ > Responds with the ~*COC*~ :factcheckstatusfalse:, I mean B2B :uhm:
+AI PING =>  1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *Gemini 3.5 Flash/ 3.1 Flash-lite* :yay:
+SOME EMOJIS-
+":uuh:"(a cat with side eye),":nu_uh:"(a smth smth pointing no),":pf:"(tearing sad smily face ig), ":igb:"(I guess bro emoji = disappointing), ":goog:" (goog) very cool and famous emoji, ":hii:" (hii emoji, use for hello and stuff), :byee: (hii but a bye variant instead) and use normal wilted rose and stuff too ig.
+more emojis-
+:neocat_aww: (cute cat awwing), :orpheus-explode: a sketch dinosaur exploding(funny contexts), :angy: for the 3d angry emoji, fast+red+happy+hedgehog :yayayayayay:.  :minion-tuff: a tOUGH minion emoji(minions from despicable)
+<@U0AE3R4FR3R> created LackBot ( display name is baguette) and "Ricky", "kman" and "Cris" are other admins.
+@baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
+@baguette and @kman are Orgs whereas Ricky is Idk he does something
+`;
 
 
 const AdminUsers = ["U0AE3R4FR3R", "U091PCWGNBX", "U0A1VPETCR3", "U09TNMQ9MCZ"] // for basic admin privileges while prompting gemini ig?
@@ -298,21 +321,50 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
     const Response = await OpenRouter.chat.send({
       model: "openai/gpt-6-luna-pro:batch",       // LMAO THE PRO VERSION IS CHEAPER THAN THE MAIN VERSION I AM CRINE https://ai.hackclub.com/models/openai/gpt-6-luna-pro:batch    https://ai.hackclub.com/models/openai/gpt-6-luna
       messages: [                                 // I have no idea why this is so different than Gemini but all I know it that "system" here sends the prompt instructions and "useR" is the prompt itself 
-        { role : "system", content : `${systemInstructions-Brief}` },
+        { role : "system", content : `${systemInstructions_Brief}` },
         { role : "user", content: `${prompt}` }
       ],
       stream: false,        // waht this line does is sends the whole answer at once rather than what you see on normal apps like each word loads one by one
     });
+    await respond ({
+      text: `${Response.choices[0].message.content}`,                     // https://docs.ai.hackclub.com/api/chat-completions.html#example-request
+    })
   }
   catch {
     try {
       const Response =  await OpenRouter.chat.send({
-        model: "openai/gpt-6-luna"
+        model: "openai/gpt-6-luna",
+        messages: [
+          {role : "system", content: `${systemInstructions_Brief}`},
+          {role : "system", content: `${prompt}`},
+        ],
+        stream: false,
+      })
+      await respond ({
+        text: `${Response.choices[0].message.content}`,
       })
     }
     catch {
-      
+      try {
+        const Response = await OpenRouter.chat.send({
+          model : `anthropic/claude-haiku-5.5:batch`,
+          messages: [
+            {role: "system", content: `${systemInstructions_Brief}`},
+            {role: "user" , content: `${systemInstructions_Brief}`}
+          ],
+          stream: false,
+        })
+        await respond ({
+          text: `${Response.choices[0].message.content}`
+        })
+      }
+      catch {
+        await respond ({
+          text : `Failed to _fetch output_ from *GPT-6 Luna Pro*, *GPT-6 Luna* and *Claude Haiku-5.5 models*, _please contact <@U0AE3R4FR3R> if you feel like this is a bug._ :pf:`
+        });
+      }
     }
+
   }
 });
 
