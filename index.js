@@ -330,7 +330,8 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
       text: `${Response.choices[0].message.content}`,                     // https://docs.ai.hackclub.com/api/chat-completions.html#example-request
     })
   }
-  catch {
+  catch (err) {
+    console.log(err)
     try {
       const Response =  await hcai.chat.send({
         model: "openai/gpt-6-luna",
@@ -344,13 +345,14 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
         text: `${Response.choices[0].message.content}`,
       })
     }
-    catch {
+    catch (err) {
+      console.log(err)
       try {
         const Response = await hcai.chat.send({
           model : `anthropic/claude-haiku-5.5:batch`,
           messages: [
             {role: "system", content: `${systemInstructions_Brief}`},
-            {role: "user" , content: `${systemInstructions_Brief}`}
+            {role: "user" , content: `${prompt}`}
           ],
           stream: false,
         })
@@ -358,7 +360,8 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
           text: `${Response.choices[0].message.content}`
         })
       }
-      catch {
+      catch (err) {
+        console.log(err)
         await respond ({
           text : `Failed to _fetch output_ from *GPT-6 Luna Pro*, *GPT-6 Luna* and *Claude Haiku-5.5 models*, _please contact <@U0AE3R4FR3R> if you feel like this is a bug._ :pf:`
         });
