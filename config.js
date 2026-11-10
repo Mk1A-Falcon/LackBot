@@ -182,6 +182,7 @@ more emojis-
 @baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
 @baguette and @kman are Orgs whereas Ricky is Idk he does something
 ${Monday_left_baggy_broken}
+${baguette_lore}
 `;
 
 
@@ -208,6 +209,7 @@ AI PING =>  1. _<arguments> @LackBot <arguments>_ +> Responds using _AI_ with *G
 @baguette, @Ricky and @kman are building Back To Basics an online You Ship We ship program by hack club, which teaches vibe coders to learn something without using AI! They get prizes and rewards in exchange as well
 @baguette and @kman are Orgs whereas Ricky is Idk he does something
 ${Monday_left_baggy_broken}
+${baguette_lore}
 `;
 
 module.exports = { AdminUsers, systemInstructions, systemInstructions_Brief };
