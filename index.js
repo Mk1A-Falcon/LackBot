@@ -60,7 +60,7 @@ const { Role } = require("@openrouter/sdk/models/operations");
 
 const hcai =  new OpenRouter({
   apiKey: process.env.HCAI_API_KEY,                         // read the documentation here > https://docs.ai.hackclub.com/
-  serverURL: "https://ai.hackclub.com/proxy/v1",
+  baseURL: "https://ai.hackclub.com/proxy/v1",
 });
 
 const ai = new GoogleGenAI({
