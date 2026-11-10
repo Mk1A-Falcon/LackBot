@@ -29,6 +29,7 @@ more emojis-
 const systemInstructions_Brief = `
 You are LackBot, a slackbot with Ai assisting features and other joke/quote api commands. Use slack formatting i.e (*bold*, _italics_, etc.
 You are a chatterbox, be more and more brief about your requests you may use humour at times ofc if the prompt isn't very serious.
+
 USE CUSTOM  EMOJIS AS MUCH AS YOU like SOME EMOJIS(custom)-
 ":uuh:"(a cat with side eye),":nu_uh:"(a smth smth pointing no),":pf:"(tearing sad smily face ig), ":igb:"(I guess bro emoji = disappointing), ":goog:" (goog) very cool and famous emoji, ":hii:" (hii emoji, use for hello and stuff), :byee: (hii but a bye variant instead) and use normal wilted rose and stuff too ig.
 more emojis-
@@ -37,11 +38,7 @@ Try to respond in a brief way going deeper into the request if necessary.
 
 These are the availaible help commands-
 1. /lackbot-help > Lists all commands available by the Lackbot slackbot. :hc-help:
-2. /lackbot-roll > Constantly rolls a number between 1 to 6. :let-it-cook: 
-3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock: 
-4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh: 
-5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner using GPT-6 Luna Pro(1st model), GPT-6 Luna(Fallback-1) and Claude Haiku 5.5(Fallback-2) (only visible to user/op). :private_channel:
+
 These are some events which trigger an automated response-
 1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
 2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
@@ -86,7 +83,7 @@ app.command("/lackbot-help",async({command,ack,respond}) => {
     3. /lackbot-ping > Checks the latency of the Lackbot. :happy_ping_sock:
     4. /lackbot-joke > Fetches a random Joke from the official Jokes API. :cat_laugh:
     5. /lackbot-quote > Fetches a random quote from ZEN api. :zen-quotes:
-    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner using *GPT-6 Luna Pro*_(1st model)_, *GPT-6 Luna*_(Fallback-1)_ and *Claude Haiku 5.5*_(Fallback-2)_ (only visible to user/op). :private_channel:\n
+    6. /lackbot-brief > Similar to App_Mentions but responds using AI in a brief and more private manner using *GPT-6 Luna*_(1st model)_, *Claude Haiku 5.5*_(Fallback-1)_ and *Gemini Flash Lite 3.5*_(Fallback-2)_ (only visible to user/op). :private_channel:\n
   *Events-* :feels-the-aura:
     1. "_I am so proud of|proud|:happy_ping_sock:_" > Responds with a message, in channel*
     2. _"b2b is love|b2b is goog"_ > Responds with a message, in channel*
@@ -327,7 +324,7 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
   try {
     const Response = await hcai.chat.send({
       chatRequest : {
-      model: "openai/gpt-6-luna-pro:batch",       // LMAO THE PRO VERSION IS CHEAPER THAN THE MAIN VERSION I AM CRINE https://ai.hackclub.com/models/openai/gpt-6-luna-pro:batch    https://ai.hackclub.com/models/openai/gpt-6-luna
+      model: "openai/gpt-6-luna",    // update removed the batch version cause it is down or smth   // LMAO THE PRO VERSION IS CHEAPER THAN THE MAIN VERSION I AM CRINE https://ai.hackclub.com/models/openai/gpt-6-luna-pro:batch    https://ai.hackclub.com/models/openai/gpt-6-luna
       messages: [                                 // I have no idea why this is so different than Gemini but all I know it that "system" here sends the prompt instructions and "useR" is the prompt itself 
         { role : "system", content : `${systemInstructions_Brief}` },
         { role : "user", content: `${prompt}` }
@@ -344,7 +341,7 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
     try {
       const Response =  await hcai.chat.send({
         chatRequest : {
-          model: "openai/gpt-6-luna",
+          model: "anthropic/claude-haiku-5.5",
           messages: [
             {role : "system", content: `${systemInstructions_Brief}`},
             {role : "user", content: `${prompt}`},
@@ -361,7 +358,7 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
       try {
         const Response = await hcai.chat.send({
           chatRequest: {
-            model : `anthropic/claude-haiku-5.5:batch`,
+            model : `google/gemini-3.5-flash-lite`,
             messages: [
               {role: "system", content: `${systemInstructions_Brief}`},
               {role: "user" , content: `${prompt}`}
