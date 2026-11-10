@@ -318,7 +318,7 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
     return;
   }
   try {
-    const Response = await OpenRouter.chat.send({
+    const Response = await hcai.chat.send({
       model: "openai/gpt-6-luna-pro:batch",       // LMAO THE PRO VERSION IS CHEAPER THAN THE MAIN VERSION I AM CRINE https://ai.hackclub.com/models/openai/gpt-6-luna-pro:batch    https://ai.hackclub.com/models/openai/gpt-6-luna
       messages: [                                 // I have no idea why this is so different than Gemini but all I know it that "system" here sends the prompt instructions and "useR" is the prompt itself 
         { role : "system", content : `${systemInstructions_Brief}` },
@@ -332,11 +332,11 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
   }
   catch {
     try {
-      const Response =  await OpenRouter.chat.send({
+      const Response =  await hcai.chat.send({
         model: "openai/gpt-6-luna",
         messages: [
           {role : "system", content: `${systemInstructions_Brief}`},
-          {role : "system", content: `${prompt}`},
+          {role : "user", content: `${prompt}`},
         ],
         stream: false,
       })
@@ -346,7 +346,7 @@ app.command("/lackbot-brief", async({command,ack,respond}) => {
     }
     catch {
       try {
-        const Response = await OpenRouter.chat.send({
+        const Response = await hcai.chat.send({
           model : `anthropic/claude-haiku-5.5:batch`,
           messages: [
             {role: "system", content: `${systemInstructions_Brief}`},
