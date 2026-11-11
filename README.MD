@@ -1,4 +1,7 @@
 # LackBot 
+<div align="center">
+![Hackatime Badge](https://hackatime.hackclub.com/api/v1/badge/U0AE3R4FR3R/LackBot)
+</div>
 A slackbot for my personal channel to ~~bully~~, I mean a HackClub slackbot that lacks some necessary features....  
 Based off the guide ["Make a slackbot"](https://stardance.hackclub.com/missions/slack-bot) but delves deeper into the topic of slackbots by utilizing events, commands, api fetches, automated responses and AI capabilities!
 
@@ -16,3 +19,11 @@ Based off the guide ["Make a slackbot"](https://stardance.hackclub.com/missions/
 3. _Insert b2b here | b2b here | b2b when_ -> Responds with the Idea canvas of B2B.   
 4. **AI PING** _(< arguments > @LackBot < arguments >)_ -> Responds using AI with **Gemini 3.5 Flash/ 3.1 Flash-lite**
 
++ Note-  
+Official Jokes API is apparently down at the moment. So `/lackbot-joke` might not work as intended :(
+
+<img src="https://cdn.hackclub.com/01a1c892-dab2-73e0-8c35-f61512d7c6d6/image.png">
+
+<img src="https://cdn.hackclub.com/01a1c892-dab2-73e0-8c35-f61512d7c6d6/image.png">
+
+## Local Setup Instructions-
