@@ -1,6 +1,6 @@
 # LackBot 
 <div align="center">
-![Hackatime Badge](https://hackatime.hackclub.com/api/v1/badge/U0AE3R4FR3R/LackBot)
+![TIME](https://hackatime.hackclub.com/api/v1/badge/U0AE3R4FR3R/LackBot)
 </div>
 A slackbot for my personal channel to ~~bully~~, I mean a HackClub slackbot that lacks some necessary features....  
 Based off the guide ["Make a slackbot"](https://stardance.hackclub.com/missions/slack-bot) but delves deeper into the topic of slackbots by utilizing events, commands, api fetches, automated responses and AI capabilities!
