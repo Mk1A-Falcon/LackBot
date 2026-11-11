@@ -1,5 +1,5 @@
 # LackBot 
-![text]("https://hackatime.hackclub.com/api/v1/badge/U0AE3R4FR3R/LackBot)   
+![text](https://hackatime.hackclub.com/api/v1/badge/U0AE3R4FR3R/LackBot)   
 A slackbot for my personal channel to <s>bully</s>, I mean a HackClub slackbot that lacks some necessary features....  
 Based off the guide [Make a slackbot](https://stardance.hackclub.com/missions/slack-bot) but delves deeper into the topic of slackbots by utilizing events, commands, api fetches, automated responses and AI capabilities!
 
