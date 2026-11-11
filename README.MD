@@ -33,9 +33,10 @@ cp config.example.js config.js  # add your own config details and admin users.
 npm install
 node index.js
 ```
-Make sure that your instance of the bot also has the following permissions/bot-scopes via api.slack.com-   
+#### Make sure that your instance of the bot also has the following permissions/bot-scopes via api.slack.com-   
+
 ![bot scopes](https://cdn.hackclub.com/01a1c8cb-74e3-7ea8-b944-546f1ed91f65/image.png)
-And also event subscriptions-
+#### And also event subscriptions-
 ![event susbscriptions](https://cdn.hackclub.com/01a1c8cc-bd2b-7808-9aff-f049c06601f2/image.png)
 
 Anyways, I had a fun time building this bot and so did my 43 testers (they made me force feed a lot of, straight up complete threads in the name of "lore")  
