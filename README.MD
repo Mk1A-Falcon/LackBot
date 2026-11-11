@@ -24,6 +24,6 @@ Official Jokes API is apparently down at the moment. So `/lackbot-joke` might no
 
 <img src="https://cdn.hackclub.com/01a1c892-dab2-73e0-8c35-f61512d7c6d6/image.png">
 
-<img src="https://cdn.hackclub.com/01a1c892-dab2-73e0-8c35-f61512d7c6d6/image.png">
+<img src="https://user-cdn.hackclub-assets.com/01a1c895-46a1-71f7-98df-32e4d8055d5a/image.png">
 
 ## Local Setup Instructions-
