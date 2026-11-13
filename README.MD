@@ -27,7 +27,7 @@ Official Jokes API is apparently down at the moment. So `/lackbot-joke` might no
 ## Local Setup Instructions-
 ```
 git clone https://github.com/Mk1A-Falcon/LackBot.git
-cd ping-dinos
+cd LackBot
 cp .env.example .env     # add your own tokens from slack-dev, hcai etc.
 cp config.example.js config.js  # add your own config details and admin users.  
 npm install
